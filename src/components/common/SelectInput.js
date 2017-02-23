@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 
-const SelectInput = ({name, label, onChange, defaulOption, value, error, options}) => {
+const SelectInput = ({name, label, onChange, defaultOption, value, error, options}) => {
         return (
         <div className="form-group">
             <label htmlFor={name}>{label}</label>
@@ -10,7 +10,7 @@ const SelectInput = ({name, label, onChange, defaulOption, value, error, options
                     className="form-control"
                     value={value}
                     onChange={onChange}>
-                    <option value="">{defaulOption}</option>
+                    <option value="">{defaultOption}</option>
                     {options.map((option)=>{
                         return <option key={option.value} value="option.value">{option.text}</option>;
                     })}
@@ -25,7 +25,7 @@ SelectInput.propTypes = {
     name: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
-    defaulOption: PropTypes.string,
+    defaultOption: PropTypes.string,
     value: PropTypes.string,
     error: PropTypes.string,
     options: PropTypes.arrayOf(PropTypes.object)
