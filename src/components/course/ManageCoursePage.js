@@ -12,12 +12,29 @@ class ManageCoursePage extends React.Component {
             course: Object.assign({}, props.course),
             errors: {}
         };
+        this.UpdateCourseState = this.UpdateCourseState.bind(this);
+        this.saveCourse = this.saveCourse.bind(this);
+    }
+
+    UpdateCourseState(event) {
+        const field = event.target.name;
+        let course = this.state.course;
+        course[field] = event.target.value;
+        return this.setState({course: course});
+    }
+
+    saveCourse(event) {
+        event.preventDefault();
+        this.props.actions.saveCourse(this.state.course);
+        this.context.router.push('/courses');
     }
 
     render() {
         return (
             <CourseForm
                 allAuthors={this.props.authors}
+                onChange={this.UpdateCourseState}
+                onSave={this.saveCourse}
                 course={this.state.course}
                 errors={this.state.errors}
             />
@@ -27,7 +44,13 @@ class ManageCoursePage extends React.Component {
 
 ManageCoursePage.propTypes = {
     course: PropTypes.object.isRequired,
-    authors: PropTypes.array.isRequired
+    authors: PropTypes.array.isRequired,
+    actions: PropTypes.object.isRequired
+};
+
+//Pull in the react Router contex so router is available on this.contex.router
+ManageCoursePage.contextTypes = {
+    router: PropTypes.object
 };
 
 function mapStateToProps(state, ownProps) {
