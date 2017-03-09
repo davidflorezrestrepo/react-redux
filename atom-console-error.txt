@@ -1,2 +1,0 @@
-Installing react to C:\Users\dflorezr\.atom\packages [31mfailed [39m
-Installing react to C:\Users\dflorezr\.atom\packages [31mfailed [39m
